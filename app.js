@@ -3,7 +3,8 @@ const path = require("path");
 
 const app = express();
 const PORT = 8000;
-
+app.set('view engine','ejs');
+app.set('views','views');
 // Middleware to parse URL-encoded form data
 app.use(express.urlencoded({ extended: true }));
 
@@ -14,7 +15,8 @@ app.get("/", (req, res, next) => {
 });
 
 app.get("/Contact-Us", (req, res, next) => {
-  res.sendFile(path.join(__dirname, "views", "Contact.html"));
+  // res.sendFile(path.join(__dirname, "views", "Contact.html"));
+  res.render("Contact")
 });
 
 app.post("/Contact-Us", (req, res, next) => {
