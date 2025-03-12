@@ -1,18 +1,11 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vehicle Registration Form</title> -->
-
-<%- include('partial/head') %> 
+<%- include('../partial/head') %> 
 
     <style>
       body {
         font-family: Arial, sans-serif;
         margin: 0;
         padding: 0;
-        background-color: #f4f4f4;
+        background: linear-gradient(135deg, #1e3c72, #2a5298);
         justify-content: center;
         align-items: center;
         height: 100vh;
@@ -20,8 +13,9 @@
       .container {
         width: 100%;
         max-width: 800px;
+        margin: 75px;
         justify-self: center;
-        background: white;
+        background:   rgba(255, 255, 255, 0.8); 
         padding: 30px;
         border-radius: 10px;
         box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
@@ -67,36 +61,36 @@
   </head>
   <body>
     <div class="container">
-      <h2>🚗 Vehicle Registration Form 🚙</h2>
-      <form action="/Add-Vehicle" method="post">
+      <h2><%=editing?"Update your Registration details":" Vehicle Registration Form 🚙"%></h2>
+      <form action="<%=editing?'/Update-Vehicle':'/Add-Vehicle'%>" method="post">
         <h3>🚘 Vehicle Information</h3>
         <label for="vehicle_type">Vehicle Type:</label>
         <select id="vehicle_type" name="vehicle_type" required>
-          <option value="Car">Car</option>
-          <option value="Bike">Bike</option>
-          <option value="Truck">Truck</option>
+          <option value="Car" <%= editing && findcar.Vahical === 'Car' ? 'selected' : '' %>>Car</option>
+          <option value="Truck" <%= editing && findcar.Vahical === 'Truck' ? 'selected' : '' %>>Truck</option>
+          <option value="Bike" <%= editing && findcar.Vahical === 'Bike' ? 'selected' : '' %>>Bike</option>
         </select>
-
+<input type="hidden" name="id" id="" value="<%=editing?findcar.id:''%>">
         <label for="vehicle_color">Color:</label>
-        <input type="text" id="vehicle_color" name="vehicle_color" />
+        <input type="text" id="vehicle_color" name="vehicle_color" value="<%=editing?findcar.Color:''%>" />
 
         <label for="vehicle_number">Vehicle Number:</label>
-        <input type="text" id="vehicle_number" name="vehicle_number" required />
+        <input type="text" id="vehicle_number" name="vehicle_number" value="<%=editing?findcar.Vehicleno:''%>" required />
 
         <label for="rate_per_day">Rate/Day (₹):</label>
-        <input type="number" id="rate_per_day" name="rate_per_day" required />
+        <input type="number" id="rate_per_day" name="rate_per_day" value="<%=editing?findcar.Rate:''%>" required />
 
         <h3>👤 Owner Information</h3>
         <label for="owner_name">Owner Name:</label>
-        <input type="text" id="owner_name" name="owner_name" required />
+        <input type="text" id="owner_name" name="owner_name" value="<%=editing?findcar.Owner:''%>" required />
 
         <label for="owner_contact">Contact Number:</label>
-        <input type="tel" id="owner_contact" name="owner_contact" required />
+        <input type="tel" id="owner_contact" name="owner_contact" value="<%=editing?findcar.Contact:''%>" required />
 
         <label for="owner_address">Address:</label>
-        <textarea id="owner_address" name="owner_address" rows="3"></textarea>
+        <textarea id="owner_address" name="owner_address" rows="3" placeholder="Enter Your Full Address" ><%=editing?findcar.Address:''%></textarea>
 
-        <button type="submit">🚀 Submit</button>
+        <button type="submit"><%=editing?"Save Update":"🚀 Submit"%></button>
       </form>
     </div>
   </body>

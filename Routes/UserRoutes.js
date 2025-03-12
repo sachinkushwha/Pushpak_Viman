@@ -1,25 +1,12 @@
 const express = require("express");
+const userController=require('../controllers/user');
+const userRoutes = express.Router();
 
-const Routes = express.Router();
 
-Routes.get("/Contact-Us", (req, res, next) => {
-  // res.sendFile(path.join(__dirname, "views", "Contact.html"));
-  res.render("Contact");
-});
+userRoutes.get('/',userController.getHome);
+userRoutes.get("/Contact-Us",userController.getContectus);
+userRoutes.get("/Add-Vehicle",userController.getAddVechicals); 
+userRoutes.post("/Add-Vehicle",userController.postAddVechicals);
+userRoutes.post("/Update-Vehicle",userController.postUpdateVachicals);
 
-Routes.get("/Add-Vehicle", (req, res, next) => {
-  res.render("Add_Vehicle");
-});
-
-const Vehicle_Added = [];
-Routes.post("/Add-Vehicle", (req, res, next) => {
-  Vehicle_Added.push(req.body);
-  console.log(Vehicle_Added);
- res.redirect('/');
-});
-Routes.get("/", (req, res, next) => {
-  console.log("First");
-  res.render("Home",{Vehicle_Added:Vehicle_Added});
-});
-
-module.exports = Routes;
+module.exports = userRoutes;

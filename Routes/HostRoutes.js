@@ -1,7 +1,7 @@
 const express = require("express");
 const fs = require("fs");
 const path = require("path");
-
+const hostController=require("../controllers/host")
 const Host_Router = express.Router();
 const DetailAdded = [];
 // yha se contact page ka data file m store kiyta jaa rha hai ....
@@ -22,5 +22,6 @@ Host_Router.post("/Contact-Us", (req, res, next) => {
   });
 });
 // ........................................//
-
+Host_Router.get("/home",hostController.getHome);
+Host_Router.get('/host-update/:carid',hostController.getCarUpdate)
 module.exports = Host_Router;

@@ -18,7 +18,8 @@ app.use(UserRoutes); // Contact Us Page khulta hai
 app.use(HostRouter); // Isse Data same path par submit hota hai and thank you page par redirect hota hai
 
 app.get("/thank-you", (req, res) => {
-  res.sendFile(path.join(__dirname, "views", "Registered.html"));
+  // res.sendFile(path.join(__dirname, "views", "Registered.html"));
+  return res.render("user/Registered");
 });
 
 app.listen(PORT, () => {
