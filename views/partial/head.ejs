@@ -1,72 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Travel Booking</title>
     <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-      body {
-        font-family: Arial, sans-serif;
-      }
+        body {
+            font-family: Arial, sans-serif;
+            padding-left: 200px; /* Sidebar ki jagah chhodne ke liye */
+        }
 
-      /* Navigation Bar */
-      header {
-        background: #007bff; /* बैकग्राउंड कलर */
-    height: 60px; /* नेविगेशन की ऊँचाई */
-    width: 100%; /* पूरी स्क्रीन पर फैलाने के लिए */
-    display: flex;
-    align-items: center; /* वर्टिकली सेंटर में रखने के लिए */
-    justify-content: center; /* आइटम्स को बराबर जगह देने के लिए */
-    position: fixed; /* हमेशा ऊपर रहने के लिए */
-    top: 0;
-    left: 0;
-    z-index: 1000; /* दूसरे एलिमेंट्स के ऊपर दिखाने के लिए */
-      }
+        /* Sidebar */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 60px;
+            height: 100%;
+            background: white;
+            padding-top: 20px;
+            transition: transform 0.3s ease-in-out;
+        }
 
-      ul {
-        list-style: none;
-        display: flex;
-        width: 100%;
-        justify-content: space-evenly;
-        padding: 0;
-        margin: 0;
-      }
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
 
-      ul li {
-        display: flex;
-        align-items: center;
-      }
+        .sidebar ul li {
+            padding: 15px;
+            margin-bottom: 100px;
+            text-align: center;
+        }
 
-      ul li a {
-        text-decoration: none;
-        color: white;
-        font-size: 18px;
-        padding: 10px 15px;
-        display: block;
-        transition: 0.3s;
-      }
+        .sidebar ul li a {
+            text-decoration: none;
+            color: white;
+            font-size: 18px;
+            display: block;
+            transition: 0.3s;
+        }
 
-      ul li a:hover {
-        background: rgba(255, 255, 255, 0.2);
-        border-radius: 5px;
-      }
+        .sidebar ul li a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+        }
+
+        /* Toggle Button (Mobile) */
+        .menu-btn {
+            position: fixed;
+            left: 10px;
+            top: 10px;
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px;
+            font-size: 18px;
+            cursor: pointer;
+            display: none; /* Desktop pe hidden */
+        }
+
+        /* Mobile Responsive */
+        @media screen and (max-width: 768px) {
+            body {
+                padding-left: 0;
+            }
+
+            .sidebar {
+                transform: translateX(-100%);
+                width: 200px;
+            }
+
+            .menu-btn {
+                display: block;
+            }
+        }
+
+        .sidebar.open {
+            transform: translateX(0);
+        }
     </style>
-  </head>
-  <body>
-    <!-- Navigation Bar -->
-    <header>
-      <ul>
-        <li><a href="/">Pushpak</a></li>
-        <li><a href="/home">Home</a></li>
-        <li><a href="/Contact-Us">Contact</a></li>
-        <li><a href="/Add-Vehicle">Add Vehicle</a></li>
-      </ul>
-    </header>
-  </body>
+</head>
+<body>
+
+    <!-- Sidebar -->
+    <nav class="sidebar" id="sidebar">
+        <ul>
+            <li><a href="/">🚗</a></li>
+            <li><a href="/home">🏠</a></li>
+            <li><a href="/Contact-Us">📞</a></li>
+            <li><a href="/Add-Vehicle">➕</a></li>
+        </ul>
+    </nav>
+
+    <!-- Toggle Button -->
+    <button class="menu-btn" id="menu-btn">☰</button>
+
+    <script>
+        const menuBtn = document.getElementById("menu-btn");
+        const sidebar = document.getElementById("sidebar");
+
+        menuBtn.addEventListener("click", () => {
+            sidebar.classList.toggle("open");
+        });
+    </script>
+
+</body>
 </html>
